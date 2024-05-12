@@ -53,6 +53,8 @@ public static class DependencyInjection
 
     public static IServiceCollection AddKeyVaultIfConfigured(this IServiceCollection services, ConfigurationManager configuration)
     {
+
+        //configuration.AddUserSecrets()
         ////AddKeyVaultIfConfigured
         //var keyVaultUri = configuration["KeyVaultUri"];
         //if (!string.IsNullOrWhiteSpace(keyVaultUri))

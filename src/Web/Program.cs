@@ -1,7 +1,18 @@
 using PulseApi.Infrastructure.Data;
+//using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// User secrets
+builder.Configuration.AddUserSecrets<Program>();
+
+// Serilog configuration read configuration from appsettings.json
+//builder.Host.UseSerilog((context, configuration) =>
+//{
+//    configuration.ReadFrom.Configuration(context.Configuration);
+//});
+
+Console.WriteLine(builder.Configuration["ApplicationOptions:Encrypt:SecretKey"]);
 // Add services to the container.
 //builder.Services.AddKeyVaultIfConfigured(builder.Configuration);
 
@@ -10,6 +21,8 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebServices();
 
 var app = builder.Build();
+
+//app.Configuration.
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -23,7 +36,8 @@ else
 }
 
 app.UseHealthChecks("/health");
-app.UseHttpsRedirection();
+//HTTPS Redirection 
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseSwaggerUi(settings =>
