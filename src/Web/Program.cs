@@ -1,5 +1,5 @@
 using PulseApi.Infrastructure.Data;
-//using Serilog;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,10 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddUserSecrets<Program>();
 
 // Serilog configuration read configuration from appsettings.json
-//builder.Host.UseSerilog((context, configuration) =>
-//{
-//    configuration.ReadFrom.Configuration(context.Configuration);
-//});
+builder.Host.UseSerilog((context, configuration) =>
+{
+    configuration.ReadFrom.Configuration(context.Configuration);
+});
 
 Console.WriteLine(builder.Configuration["ApplicationOptions:Encrypt:SecretKey"]);
 // Add services to the container.
